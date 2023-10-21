@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TranslateAnimation animation = new TranslateAnimation(0,0,0,-500);
-                animation.setDuration(1000);
+                animation.setDuration(2000);
                 animation.setInterpolator(new AccelerateDecelerateInterpolator());
 
                 LinearLayout linear = findViewById(R.id.linearUp);
