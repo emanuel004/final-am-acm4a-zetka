@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="cancelar">CANCELAR</string>
+    <string name="introducir_nombre">Introducir Nombre</string>
+    <string name="introducir_contrase_a">Introducir Contraseña</string>
+    <string name="olvidaste_tu_contrasena">Olvidaste tu contrasena?</string>
+    <string name="registrarte">Registrarte</string>
+</resources>
