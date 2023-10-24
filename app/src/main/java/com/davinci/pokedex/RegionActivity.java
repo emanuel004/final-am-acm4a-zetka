@@ -21,9 +21,11 @@ public class RegionActivity extends AppCompatActivity {
         //formato lista o GridLayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerview_lists = new ArrayList<>(recyclerview_lists);
+        recyclerview_lists = new ArrayList<recyclerview_list>();
         //IMAGENES
         recyclerview_lists.add(new recyclerview_list(R.drawable.kanto,"kanto"));
+        recyclerview_lists.add(new recyclerview_list(R.drawable.kanto,"k"));
+        recyclerview_lists.add(new recyclerview_list(R.drawable.kanto,"j"));
 
         recyclerview_adapter recyclerview_adapter = new recyclerview_adapter(recyclerview_lists,this);
         recyclerView.setAdapter(recyclerview_adapter);

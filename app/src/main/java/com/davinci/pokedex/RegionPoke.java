@@ -23,7 +23,7 @@ public class RegionPoke extends AppCompatActivity {
         //formato lista o GridLayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        recyclerview_lists = new ArrayList<>(recyclerview_lists);
+        recyclerview_lists = new ArrayList<recyclerview_list>();
         //IMAGENES
         recyclerview_lists.add(new recyclerview_list(R.drawable.kanto,"kanto"));
 
