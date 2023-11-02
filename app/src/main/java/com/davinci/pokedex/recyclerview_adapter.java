@@ -10,15 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.davinci.pokedex.model.Pokemon;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adapter.ViewHolder> {
 
-    private ArrayList<recyclerview_list> recyclerview_lists;
+    private List<Pokemon> pokemonList;
     private Context context;
 
-    public recyclerview_adapter(ArrayList<recyclerview_list> recyclerview_lists, Context context) {
-        this.recyclerview_lists = recyclerview_lists;
+    public recyclerview_adapter(List<Pokemon> pokemonList, Context context) {
+        this.pokemonList = pokemonList;
         this.context = context;
     }
 
@@ -32,13 +36,15 @@ public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adap
     @Override
     public void onBindViewHolder(@NonNull recyclerview_adapter.ViewHolder holder, int position) {
         //se inserta en la cardview
-        holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
-        holder.textView.setText(recyclerview_lists.get(position).getText());
+        //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
+        Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
+
+        holder.textView.setText(pokemonList.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return recyclerview_lists.size();
+        return pokemonList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

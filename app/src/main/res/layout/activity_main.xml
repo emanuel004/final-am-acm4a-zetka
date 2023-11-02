@@ -6,53 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="25dp"
-            android:autofillHints="emailAddress"
-            android:hint="@string/introducir_nombre"
-            android:inputType="text">
-
-        </EditText>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="25dp"
-            android:autofillHints="password"
-            android:hint="@string/introducir_contrase_a"
-            android:inputType="text">
-
-        </EditText>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aceptar"
-                android:layout_gravity="start"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="30dp">
-            </Button>
-            <Button
-                android:id="@+id/cancelar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cancelar"
-                android:layout_gravity="start"
-                android:layout_marginStart="30dp">
-            </Button>
-        </LinearLayout>
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/linearUp"
         android:layout_width="match_parent"
@@ -79,7 +32,7 @@
         android:gravity="top">
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/boton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,10 +40,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/linearDown"
-        android:text="l"
-        android:gravity="top"
-        android:background="@drawable/boton_cicular">
-    </Button>
+        android:backgroundTint="@color/rojo"
+        android:gravity="top">
+
+    </com.google.android.material.button.MaterialButton>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
