@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/linearDown"
         android:orientation="vertical"
-        android:background="#CA0707"
+        android:background="@color/red"
         android:gravity="top"
         >
     </LinearLayout>
@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/linearDown"
-        android:backgroundTint="@color/rojo"
+        android:backgroundTint="@color/gris"
         android:gravity="top">
 
     </com.google.android.material.button.MaterialButton>

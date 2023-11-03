@@ -35,14 +35,33 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/aceptar"
-            android:layout_gravity="start">
-        </Button>
+            android:backgroundTint="@color/red"
+            >
+        </com.google.android.material.button.MaterialButton>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/olvidaste_tu_contrase_a"
+            android:gravity="center"
+            android:textColor="#2181E8"
+            android:layout_marginVertical="5dp"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registrarse"
+            android:gravity="center"
+            >
+        </TextView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

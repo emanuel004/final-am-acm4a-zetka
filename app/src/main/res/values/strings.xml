@@ -4,4 +4,6 @@
     <string name="cancelar">CANCELAR</string>
     <string name="introducir_nombre">Introducir Nombre</string>
     <string name="introducir_contrase_a">Introducir Contraseña</string>
+    <string name="olvidaste_tu_contrase_a">Olvidaste tu Contraseña?</string>
+    <string name="registrarse">REGISTRARSE</string>
 </resources>

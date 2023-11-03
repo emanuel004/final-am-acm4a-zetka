@@ -1,4 +1,4 @@
-package com.davinci.pokedex;
+package com.davinci.pokedex.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,43 +11,43 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.davinci.pokedex.model.Pokemon;
+import com.davinci.pokedex.R;
+import com.davinci.pokedex.model.Region;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class recyclerview_adapter extends RecyclerView.Adapter<recyclerview_adapter.ViewHolder> {
-
-    private List<Pokemon> pokemonList;
+public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder>{
+    private List<Region> regionList;
     private Context context;
 
-    public recyclerview_adapter(List<Pokemon> pokemonList, Context context) {
-        this.pokemonList = pokemonList;
+    public RegionAdapter(List<Region> regions, Context applicationContext) {
+        this.regionList = regionList;
         this.context = context;
     }
 
+
     @NonNull
     @Override
-    public recyclerview_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemon_card,parent,false);
+    public RegionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_card,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull recyclerview_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RegionAdapter.ViewHolder holder, int position) {
         //se inserta en la cardview
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
-        Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
+        //Glide.with(context).load(regionList.get(position).getSprites().getFront_default()).into(holder.imageView);
 
-        holder.textView.setText(pokemonList.get(position).getName());
+        holder.textView.setText(regionList.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return pokemonList.size();
+        return regionList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
         public ViewHolder(@NonNull View itemView) {

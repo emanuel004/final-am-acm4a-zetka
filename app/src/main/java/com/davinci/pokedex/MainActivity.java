@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 button.setVisibility(View.INVISIBLE);
                         /*Intent intent = new Intent(MainActivity.this, Login.class);
                         startActivity(intent);*/
-                Intent intent = new Intent(MainActivity.this, RegionActivity.class);
+                Intent intent = new Intent(MainActivity.this, PokemonActivity.class);
                 startActivity(intent);
             }
 

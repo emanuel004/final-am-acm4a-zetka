@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:gravity="bottom"
             android:text="Textview"
-            android:textColor="@color/rojo"
+            android:textColor="@color/red"
             android:textSize="50sp"></TextView>
     </FrameLayout>
 

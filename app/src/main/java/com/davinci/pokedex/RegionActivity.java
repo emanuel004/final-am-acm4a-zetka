@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.davinci.pokedex.adapter.RegionAdapter;
 import com.davinci.pokedex.controller.CallApi;
 import com.davinci.pokedex.interfaces.PokemonService;
 import com.davinci.pokedex.model.Pokemon;
+import com.davinci.pokedex.model.Region;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,34 +38,32 @@ public class RegionActivity extends AppCompatActivity {
     }
 
     private void callApiPokemon() {
-        CallApi callApi = new CallApi();
-        PokemonService pokemonService = callApi.InstanceRetrofit()
-                .create(PokemonService.class);
 
         // Obtiene el valor de la clave "string_key"
         Integer intValue = getResources().getInteger(R.integer.random);
 
-        Call<ArrayList<Pokemon>> call = pokemonService.getPokemonRandom(intValue);
+        Call<List<Region>> call = new CallApi()
+                .InstanceRetrofit()
+                .getRegion();
 
-        call.enqueue(new Callback<ArrayList<Pokemon>>() {
+        call.enqueue(new Callback<List<Region>>() {
             @Override
-            public void onResponse(Call<ArrayList<Pokemon>> call, Response<ArrayList<Pokemon>> response) {
+            public void onResponse(Call<List<Region>> call, Response<List<Region>> response) {
                 if (response.isSuccessful()) {
-                    List<Pokemon> pokemons =  response.body();
-                    Toast.makeText(RegionActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                    initRVAdapter(pokemons);
+                    List<Region> regions =  response.body();
+                    initRVAdapter(regions);
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Pokemon>> call, Throwable t) {
+            public void onFailure(Call<List<Region>> call, Throwable t) {
                 Toast.makeText(RegionActivity.this, "ERROR DE CONEXION", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void initRVAdapter(List<Pokemon> pokemons) {
-        recyclerview_adapter recyclerview_adapter = new recyclerview_adapter(pokemons,getApplicationContext());
-        recyclerView.setAdapter(recyclerview_adapter);
+    private void initRVAdapter(List<Region> regions) {
+        RegionAdapter regionAdapter = new RegionAdapter(regions,getApplicationContext());
+        recyclerView.setAdapter(regionAdapter);
     }
 }
