@@ -6,4 +6,7 @@
     <string name="introducir_contrase_a">Introducir Contraseña</string>
     <string name="olvidaste_tu_contrase_a">Olvidaste tu Contraseña?</string>
     <string name="registrarse">REGISTRARSE</string>
+    <string name="boton_pokebola">boton_pokebola</string>
+    <string name="login">LOGIN</string>
+    <string name="introducir_mail">Introducir Mail</string>
 </resources>

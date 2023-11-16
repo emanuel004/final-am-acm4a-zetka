@@ -1,5 +1,7 @@
 package com.davinci.pokedex;
 
+import static com.davinci.pokedex.Constants.URL_BASE;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,8 @@ public class RegionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
 
+        Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON", Toast.LENGTH_SHORT).show();
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         //formato lista o GridLayoutManager
@@ -37,18 +41,17 @@ public class RegionActivity extends AppCompatActivity {
         callApiPokemon();
     }
 
+
     private void callApiPokemon() {
+        CallApi callApi = new CallApi();
 
-        // Obtiene el valor de la clave "string_key"
-        Integer intValue = getResources().getInteger(R.integer.random);
-
-        Call<List<Region>> call = new CallApi()
+        Call<ArrayList<Region>> call = callApi
                 .InstanceRetrofit()
                 .getRegion();
 
-        call.enqueue(new Callback<List<Region>>() {
+        call.enqueue(new Callback<ArrayList<Region>>() {
             @Override
-            public void onResponse(Call<List<Region>> call, Response<List<Region>> response) {
+            public void onResponse(Call<ArrayList<Region>> call, Response<ArrayList<Region>> response) {
                 if (response.isSuccessful()) {
                     List<Region> regions =  response.body();
                     initRVAdapter(regions);
@@ -56,7 +59,7 @@ public class RegionActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Region>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Region>> call, Throwable t) {
                 Toast.makeText(RegionActivity.this, "ERROR DE CONEXION", Toast.LENGTH_SHORT).show();
             }
         });

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:autofillHints="emailAddress"
-            android:hint="@string/introducir_nombre"
+            android:hint="@string/introducir_mail"
             android:inputType="text">
 
         </EditText>
@@ -39,9 +39,10 @@
         >
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/aceptar"
+            android:text="@string/login"
             android:backgroundTint="@color/red"
             >
         </com.google.android.material.button.MaterialButton>

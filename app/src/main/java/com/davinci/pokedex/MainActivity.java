@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private ImageButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 linear.setVisibility(View.INVISIBLE);
                 linear2.setVisibility(View.INVISIBLE);
                 button.setVisibility(View.INVISIBLE);
-                        /*Intent intent = new Intent(MainActivity.this, Login.class);
-                        startActivity(intent);*/
-                Intent intent = new Intent(MainActivity.this, PokemonActivity.class);
+                Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
             }
 

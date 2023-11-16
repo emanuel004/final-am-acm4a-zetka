@@ -19,6 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class PokemonActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @Override
@@ -34,7 +35,7 @@ public class PokemonActivity extends AppCompatActivity {
     }
 
     private void callApiPokemon() {
-        CallApi callApi = new CallApi();
+       CallApi callApi = new CallApi();
 
         Call<ArrayList<Pokemon>> call = callApi.InstanceRetrofit().getPokemonRandom(10);
 
@@ -54,6 +55,7 @@ public class PokemonActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void initRVAdapter(List<Pokemon> pokemons) {
         recyclerview_adapter recyclerview_adapter = new recyclerview_adapter(pokemons,getApplicationContext());

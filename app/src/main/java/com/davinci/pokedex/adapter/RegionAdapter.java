@@ -8,15 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.davinci.pokedex.R;
 import com.davinci.pokedex.model.Region;
 
 import java.util.List;
 
-public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder>{
+public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder> {
     private List<Region> regionList;
     private Context context;
 
@@ -36,7 +36,12 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RegionAdapter.ViewHolder holder, int position) {
         //se inserta en la cardview
-        //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
+        String nameImage = regionList.get(position).getName()+ ".png";
+        int idImage = context
+                .getApplicationContext()
+                .getResources()
+                .getIdentifier(nameImage,"drawable", context.getPackageName());
+        holder.imageView.setImageResource(idImage);
         //Glide.with(context).load(regionList.get(position).getSprites().getFront_default()).into(holder.imageView);
 
         holder.textView.setText(regionList.get(position).getName());
