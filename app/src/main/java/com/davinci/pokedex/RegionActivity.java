@@ -37,6 +37,9 @@ public class RegionActivity extends AppCompatActivity {
 
         regionArrayList = new ArrayList<RegionList>();
         regionArrayList.add(new RegionList(R.drawable.kanto,"kanto"));
+        regionArrayList.add(new RegionList(R.drawable.johto,"jhoto"));
+        regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn"));
+        regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh"));
 
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
