@@ -4,75 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="25dp"
     tools:context=".Login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <EditText
-            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
+            android:layout_height="50dp"
             android:autofillHints="emailAddress"
-            android:hint="@string/introducir_nombre"
-            android:inputType="text"
-            android:textSize="20dp">
+            android:hint="@string/introducir_mail"
+            android:inputType="text">
 
         </EditText>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
+            android:layout_height="50dp"
             android:autofillHints="password"
             android:hint="@string/introducir_contrase_a"
-            android:inputType="text"
-            android:textSize="20dp">
+            android:inputType="text">
 
         </EditText>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center|center_horizontal"
-            android:layout_marginHorizontal="25dp"
-            android:text="LOGIN"></Button>
-
+            android:layout_height="match_parent"
+            android:text="@string/login"
+            android:backgroundTint="@color/red"
+            >
+        </com.google.android.material.button.MaterialButton>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center|center_horizontal"
+            android:text="@string/olvidaste_tu_contrase_a"
+            android:gravity="center"
+            android:textColor="#2181E8"
             android:layout_marginVertical="5dp"
-            android:text="@string/registrarte"
-            android:textColor="@color/link">
-
+            >
         </TextView>
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center|center_horizontal"
-            android:layout_marginVertical="5dp"
-            android:text="@string/olvidaste_tu_contrasena"
-            android:textColor="@color/link">
-
+            android:text="@string/registrarse"
+            android:gravity="center"
+            >
         </TextView>
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:id="@+id/linearUp"
         android:layout_width="match_parent"
@@ -16,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/linearDown"
         android:orientation="vertical"
-        android:background="#CA0707"
+        android:background="@color/red"
+        android:gravity="top"
         >
     </LinearLayout>
 
@@ -28,25 +28,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="top">
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/boton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/boton_cicular"
-        android:text="l"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@id/linearDown"
+        app:layout_constraintTop_toTopOf="@id/linearUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/linearUp"
-        tools:visibility="visible">
-
-    </Button>
-
-
-
+        app:layout_constraintBottom_toBottomOf="@id/linearDown"
+        android:background="@drawable/circle"
+        android:contentDescription="@string/boton_pokebola"
+        android:gravity="top">
+    </ImageButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
