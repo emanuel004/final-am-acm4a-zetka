@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
@@ -15,12 +14,8 @@ import com.davinci.pokedex.controller.CallApi;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,24 +39,25 @@ public class RegionActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         regionArrayList = new ArrayList<RegionList>();
-        regionArrayList.add(new RegionList(R.drawable.kanto,"kanto"));
-        regionArrayList.add(new RegionList(R.drawable.johto,"jhoto"));
-        regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn"));
-        regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh"));
+        regionArrayList.add(new RegionList(R.drawable.kanto,"kanto", 1, null, 150));
+        regionArrayList.add(new RegionList(R.drawable.johto,"jhoto", 2, 152, 99));
+        regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn", 3, 253, 134));
+        regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh", 4, 387, 106));
 
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
         //callApiRegion();
-        onClick();
+        onClick(regionArrayList);
 
 
     }
 
-    private void onClick() {
+    private void onClick(ArrayList<RegionList> regionArrayList ) {
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegionActivity.this, PokemonListActivity.class);
+                v.getId();
                 startActivity(intent);
             }
         });

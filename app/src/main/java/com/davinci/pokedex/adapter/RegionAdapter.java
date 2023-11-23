@@ -37,7 +37,6 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RegionAdapter.ViewHolder holder, int position) {
-
         holder.imageView.setImageResource(regionList.get(position).getImage());
         holder.textView.setText(regionList.get(position).getText());
     }
