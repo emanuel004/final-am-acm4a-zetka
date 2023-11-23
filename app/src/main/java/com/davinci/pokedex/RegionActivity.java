@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
@@ -12,8 +15,12 @@ import com.davinci.pokedex.controller.CallApi;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +29,7 @@ import retrofit2.Response;
 public class RegionActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
+    ArrayList<Region> regions;
     ArrayList<RegionList> regionArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +51,23 @@ public class RegionActivity extends AppCompatActivity {
 
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
+        //callApiRegion();
+        onClick();
 
-        //callApiPokemon();
+
     }
 
+    private void onClick() {
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegionActivity.this, PokemonListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
-    private void callApiPokemon() {
+    private void callApiRegion(){
         CallApi callApi = new CallApi();
 
         Call<ArrayList<Region>> call = callApi
@@ -72,6 +91,8 @@ public class RegionActivity extends AppCompatActivity {
     }
 
     /*private void initRVAdapter(List<Region> regions) {
+        TextView textView = findViewById(R.id.textView);
+        textView.setText(regions);
         RegionAdapter regionAdapter = new RegionAdapter(regions,getApplicationContext());
         recyclerView.setAdapter(regionAdapter);
     }*/

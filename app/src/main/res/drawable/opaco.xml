@@ -6,20 +6,17 @@
             <solid android:color="@color/gris" /> <!-- Cambia el color según tus necesidades -->
             <stroke android:color="@color/black"
                 android:width="0.5dp"></stroke>
-            <size
-                android:width="200dp"
-                android:height="200dp" />
         </shape>
     </item>
 
     <!-- Círculo interior -->
-    <item android:left="50dp" android:top="50dp" android:right="50dp" android:bottom="50dp">
+    <item android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp">
         <shape
             android:shape="oval">
             <solid android:color="@color/gris" /> <!-- Cambia el color según tus necesidades -->
             <size
-                android:width="50dp"
-                android:height="50dp" />
+                android:width="15dp"
+                android:height="15dp" />
             <stroke android:color="@color/black"
                 android:width="0.5dp"></stroke>
         </shape>
