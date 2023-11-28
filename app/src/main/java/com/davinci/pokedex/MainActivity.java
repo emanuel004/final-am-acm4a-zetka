@@ -3,6 +3,8 @@ package com.davinci.pokedex;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -13,6 +15,19 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public void checkConnection(){
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()){
+            //hacer algo
+        }else{
+            //Activity
+        }
+    }
+
     private ImageButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.boton);
         initialAnimation();
+        checkConnection();
     }
 
     private void initialAnimation() {

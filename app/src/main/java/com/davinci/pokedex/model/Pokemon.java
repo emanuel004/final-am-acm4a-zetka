@@ -1,12 +1,19 @@
 package com.davinci.pokedex.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 public class Pokemon {
+    @JsonProperty("no")
     public int no;
+    @JsonProperty("name")
     public String name;
+    @JsonProperty("types")
     public ArrayList<String> types;
+    @JsonProperty("sprites")
     public Sprites sprites;
+    @JsonProperty("regions")
     public ArrayList<String> regions;
 
     public int getNo() {
@@ -15,14 +22,6 @@ public class Pokemon {
 
     public void setNo(int no) {
         this.no = no;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ArrayList<String> getTypes() {
@@ -47,5 +46,13 @@ public class Pokemon {
 
     public void setRegions(ArrayList<String> regions) {
         this.regions = regions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
