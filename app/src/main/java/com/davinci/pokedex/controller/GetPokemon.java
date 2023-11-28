@@ -43,6 +43,7 @@ public class GetPokemon extends AsyncTask<String,Integer,String> {
             ObjectMapper objectMapper = new ObjectMapper();
             PokemonList respuesta = objectMapper.readValue(response, PokemonList.class);
             response = respuesta.pokemonList.get(0).getName();
+
             /*JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = (JSONArray) jsonObject.get("jsonArray");
             JSONObject item = (JSONObject) jsonArray.get(0);
