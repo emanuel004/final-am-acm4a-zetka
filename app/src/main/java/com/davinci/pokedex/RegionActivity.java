@@ -11,15 +11,15 @@ import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
 import com.davinci.pokedex.controller.CallApi;
+import com.davinci.pokedex.controller.GetPokemon;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class RegionActivity extends AppCompatActivity {
 
@@ -39,7 +39,7 @@ public class RegionActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         regionArrayList = new ArrayList<RegionList>();
-        regionArrayList.add(new RegionList(R.drawable.kanto,"kanto", 1, null, 150));
+        regionArrayList.add(new RegionList(R.drawable.kanto,"kanto", 1, 1, 150));
         regionArrayList.add(new RegionList(R.drawable.johto,"jhoto", 2, 152, 99));
         regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn", 3, 253, 134));
         regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh", 4, 387, 106));
@@ -47,23 +47,17 @@ public class RegionActivity extends AppCompatActivity {
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
         //callApiRegion();
-        onClick(regionArrayList);
-
+        //onClick(regionArrayList);
+        //callApi();
 
     }
 
-    private void onClick(ArrayList<RegionList> regionArrayList ) {
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegionActivity.this, PokemonListActivity.class);
-                v.getId();
-                startActivity(intent);
-            }
-        });
-    }
+    /*private void callApi() {
+        GetPokemon getPokemon = new GetPokemon();
+        getPokemon.execute("https://pokedex-tiagoramirez.vercel.app/api/v1/pokemon?offset=150&limit=30");
+    }*/
 
-    private void callApiRegion(){
+    /*private void callApiRegion(){
         CallApi callApi = new CallApi();
 
         Call<ArrayList<Region>> call = callApi
