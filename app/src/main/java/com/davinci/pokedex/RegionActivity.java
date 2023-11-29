@@ -40,9 +40,9 @@ public class RegionActivity extends AppCompatActivity {
 
         regionArrayList = new ArrayList<RegionList>();
         regionArrayList.add(new RegionList(R.drawable.kanto,"kanto", 1, 1, 150));
-        regionArrayList.add(new RegionList(R.drawable.johto,"jhoto", 2, 152, 99));
-        regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn", 3, 253, 134));
-        regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh", 4, 387, 106));
+        regionArrayList.add(new RegionList(R.drawable.johto,"jhoto", 2, 151, 99));
+        regionArrayList.add(new RegionList(R.drawable.hoenn,"hoenn", 3, 251, 134));
+        regionArrayList.add(new RegionList(R.drawable.sinnoh,"sinnoh", 4, 386, 106));
 
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);

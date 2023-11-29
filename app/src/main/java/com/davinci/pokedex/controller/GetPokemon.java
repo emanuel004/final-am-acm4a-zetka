@@ -3,14 +3,10 @@ package com.davinci.pokedex.controller;
 import android.os.AsyncTask;
 
 import com.davinci.pokedex.model.Pokemon;
-import com.davinci.pokedex.model.RegionList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -21,7 +17,7 @@ class PokemonList {
     public List<Pokemon> pokemonList;
 }
 
-public class GetPokemon extends AsyncTask<String,Integer,String> {
+public class GetPokemon extends AsyncTask<String,Integer,List<Pokemon>> {
 
     OkHttpClient client = new OkHttpClient();
 
@@ -35,14 +31,16 @@ public class GetPokemon extends AsyncTask<String,Integer,String> {
         }
     }
     @Override
-    protected String doInBackground(String... strings) {
-        String url= strings[0];
+    protected List<Pokemon> doInBackground(String... strings) {
+        String url = strings[0];
         String response = "";
+        List<Pokemon> respuesta;
         try {
             response = run(url);
             ObjectMapper objectMapper = new ObjectMapper();
-            PokemonList respuesta = objectMapper.readValue(response, PokemonList.class);
-            response = respuesta.pokemonList.get(0).getName();
+            respuesta = Arrays.asList(objectMapper.readValue(response, Pokemon[].class));
+
+            //Pokemon info = respuesta[0];
 
             /*JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = (JSONArray) jsonObject.get("jsonArray");
@@ -51,10 +49,10 @@ public class GetPokemon extends AsyncTask<String,Integer,String> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return url;
+        return respuesta;
     }
 
-    protected void onPostExecute(String s){
+    protected void onPostExecute(List<Pokemon> s){
         super.onPostExecute(s);
     }
 }

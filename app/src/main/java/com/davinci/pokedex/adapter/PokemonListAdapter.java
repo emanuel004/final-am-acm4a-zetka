@@ -16,7 +16,7 @@ import com.davinci.pokedex.model.Pokemon;
 
 import java.util.List;
 
-public class PokemonListAdapter {
+public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.ViewHolder> {
     private List<Pokemon> pokemonList;
     private Context context;
 
@@ -27,7 +27,7 @@ public class PokemonListAdapter {
 
     @NonNull
     public PokemonListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemon_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemon_list_card,parent,false);
         return new PokemonListAdapter.ViewHolder(view);
     }
 
@@ -35,7 +35,7 @@ public class PokemonListAdapter {
         //se inserta en la cardview
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
         Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
-        holder.textView.setText(pokemonList.get(position).getName());
+
     }
     public int getItemCount() {
         return pokemonList.size();
@@ -43,12 +43,12 @@ public class PokemonListAdapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
-        TextView textView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //desde aca se obtiene lo que esta en pantalla
             imageView = itemView.findViewById(R.id.imageView);
-            textView = itemView.findViewById(R.id.textView);
+
         }
     }
 }

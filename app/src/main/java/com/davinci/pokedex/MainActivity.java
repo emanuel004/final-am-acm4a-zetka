@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialAnimation() {
         TranslateAnimation animation = new TranslateAnimation(0,0,0,-1500);
-        animation.setDuration(1000);
+        animation.setDuration(2000);
         animation.setInterpolator(new AccelerateDecelerateInterpolator());
 
         LinearLayout linear = findViewById(R.id.linearUp);
 
         TranslateAnimation animation1 = new TranslateAnimation(0,0,0,1500);
-        animation1.setDuration(1000);
+        animation1.setDuration(2000);
         animation1.setInterpolator(new AccelerateDecelerateInterpolator());
 
         LinearLayout linear2 = findViewById(R.id.linearDown);

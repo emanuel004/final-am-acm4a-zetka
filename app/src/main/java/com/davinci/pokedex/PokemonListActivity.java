@@ -8,19 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.davinci.pokedex.adapter.PokemonListAdapter;
 import com.davinci.pokedex.adapter.recyclerview_adapter;
-import com.davinci.pokedex.controller.CallApi;
 import com.davinci.pokedex.controller.GetPokemon;
 import com.davinci.pokedex.model.Pokemon;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.concurrent.ExecutionException;
 
 public class PokemonListActivity extends AppCompatActivity {
 
@@ -30,22 +26,30 @@ public class PokemonListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pokemon);
+        setContentView(R.layout.activity_pokemon_list);
 
         Intent intent = getIntent();
-        inicio = intent.getIntExtra("inicio",0);
-        total = intent.getIntExtra("total",0);
+        inicio = intent.getIntExtra("inicio", 0);
+        total = intent.getIntExtra("total", 0);
 
         recyclerView = findViewById(R.id.pokemonView);
         recyclerView.setHasFixedSize(true);
         //formato lista o GridLayoutManager
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        callApiPokemon();
+        List<Pokemon> response;
+        try {
+            response = callApiPokemon();
+        } catch (JsonProcessingException | ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        PokemonListAdapter pokemons = new PokemonListAdapter(response, getApplicationContext());
+        recyclerView.setAdapter(pokemons);
 
     }
 
-    private void callApiPokemon() {
+    private List<Pokemon> callApiPokemon() throws JsonProcessingException, ExecutionException, InterruptedException {
         GetPokemon getPokemon = new GetPokemon();
-        getPokemon.execute(URL_BASE + "pokemon?offset= "+inicio + "&limit=" + total);
+        List<Pokemon> respuesta1 = getPokemon.execute(URL_BASE + "pokemon?offset= "+inicio + "&limit=" + total).get();
+        return respuesta1;
     }
 }
