@@ -1,10 +1,17 @@
 package com.davinci.pokedex.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Pokemon {
+
     @JsonProperty("no")
     public int no;
     @JsonProperty("name")
@@ -15,6 +22,7 @@ public class Pokemon {
     public Sprites sprites;
     @JsonProperty("regions")
     public ArrayList<String> regions;
+
 
     public int getNo() {
         return no;
@@ -55,4 +63,5 @@ public class Pokemon {
     public void setName(String name) {
         this.name = name;
     }
+
 }

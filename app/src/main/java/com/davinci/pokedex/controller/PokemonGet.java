@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetPokemon extends AsyncTask<String,Integer,List<Pokemon>> {
+public class PokemonGet extends AsyncTask<String,Integer, Pokemon> {
 
     OkHttpClient client = new OkHttpClient();
 
@@ -27,21 +27,21 @@ public class GetPokemon extends AsyncTask<String,Integer,List<Pokemon>> {
         }
     }
     @Override
-    protected List<Pokemon> doInBackground(String... strings) {
+    protected Pokemon doInBackground(String... strings) {
         String url = strings[0];
         String response = "";
-        List<Pokemon> respuesta;
+        Pokemon respuesta;
         try {
             response = run(url);
             ObjectMapper objectMapper = new ObjectMapper();
-            respuesta = Arrays.asList(objectMapper.readValue(response, Pokemon[].class));
+            respuesta = objectMapper.readValue(response, Pokemon.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return respuesta;
     }
 
-    protected void onPostExecute(List<Pokemon> s){
+    protected void onPostExecute(Pokemon s){
         super.onPostExecute(s);
     }
 }

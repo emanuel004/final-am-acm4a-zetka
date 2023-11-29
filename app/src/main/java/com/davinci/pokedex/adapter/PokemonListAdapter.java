@@ -1,6 +1,7 @@
 package com.davinci.pokedex.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.davinci.pokedex.PokemonActivity;
+import com.davinci.pokedex.PokemonListActivity;
 import com.davinci.pokedex.R;
 import com.davinci.pokedex.model.Pokemon;
 
@@ -35,6 +39,21 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         //se inserta en la cardview
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
         Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int adapterPosition = holder.getAdapterPosition();
+                // Obtener datos específicos de la CardView en esta posición
+                //String datoEspecifico = listaDeDatos.get(position).getDatoEspecifico();
+                //holder.
+
+                // Aquí puedes realizar acciones con el dato específico, por ejemplo, abrir una nueva actividad o fragmento.
+                Intent intent = new Intent(view.getContext(), PokemonActivity.class);
+                intent.putExtra("id_pokemon", pokemonList.get(adapterPosition).no);
+                view.getContext().startActivity(intent);
+
+            }
+        });
 
     }
     public int getItemCount() {
@@ -43,11 +62,13 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //desde aca se obtiene lo que esta en pantalla
             imageView = itemView.findViewById(R.id.imageView);
+            cardView = itemView.findViewById(R.id.pokemonListCard);
 
         }
     }

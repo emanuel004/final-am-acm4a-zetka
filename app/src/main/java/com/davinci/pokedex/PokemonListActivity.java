@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.davinci.pokedex.adapter.PokemonListAdapter;
-import com.davinci.pokedex.adapter.recyclerview_adapter;
 import com.davinci.pokedex.controller.GetPokemon;
 import com.davinci.pokedex.model.Pokemon;
 import com.fasterxml.jackson.core.JsonProcessingException;
