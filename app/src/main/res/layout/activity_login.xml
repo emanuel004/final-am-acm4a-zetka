@@ -46,6 +46,14 @@
             android:backgroundTint="@color/red"
             >
         </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/omitir"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/omitir"
+            android:backgroundTint="@color/red"
+            >
+        </com.google.android.material.button.MaterialButton>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

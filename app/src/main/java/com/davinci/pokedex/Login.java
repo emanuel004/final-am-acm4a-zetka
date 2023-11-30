@@ -14,7 +14,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button button = findViewById(R.id.login);
+        Button button = findViewById(R.id.omitir);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
