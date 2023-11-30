@@ -1,17 +1,25 @@
 package com.davinci.pokedex;
 
+import static com.davinci.pokedex.Constants.URL_BASE;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
+import com.davinci.pokedex.controller.GetRandom;
+import com.davinci.pokedex.model.Pokemon;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class RegionActivity extends AppCompatActivity {
@@ -40,6 +48,22 @@ public class RegionActivity extends AppCompatActivity {
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
 
+        ImageButton imageButton = findViewById(R.id.random);
+        clickEvent(imageButton);
+
     }
+
+    private void clickEvent(ImageButton imageButton) {
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(v.getContext(), PokemonRadomActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
 }

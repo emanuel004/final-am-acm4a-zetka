@@ -30,7 +30,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.ViewHolder
     @NonNull
     @Override
     public RegionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.region_card,parent,false);
         return new ViewHolder(view);
     }
 

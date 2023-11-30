@@ -39,6 +39,15 @@ public class Pokemon_adapter extends RecyclerView.Adapter<Pokemon_adapter.ViewHo
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
         Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
         holder.textView.setText(pokemonList.get(position).getName());
+
+        holder.idText.setText("Number Pokedex: " + pokemonList.get(position).getNo());
+
+        holder.type.setText("Types: ");
+        pokemonList.get(position).getTypes().forEach(typeValue -> holder.type.append(typeValue + ". "));
+
+
+        holder.region.setText("Regions: ");
+        pokemonList.get(position).getRegions().forEach(typeValue -> holder.region.append(typeValue + ". "));
     }
 
     @Override
@@ -49,11 +58,19 @@ public class Pokemon_adapter extends RecyclerView.Adapter<Pokemon_adapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
+        TextView idText;
+        TextView type;
+        TextView region;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //desde aca se obtiene lo que esta en pantalla
             imageView = itemView.findViewById(R.id.imageView);
             textView = itemView.findViewById(R.id.textView);
+
+            idText = itemView.findViewById(R.id.nPokedex);
+            type = itemView.findViewById(R.id.types);
+            region = itemView.findViewById(R.id.regions);
         }
     }
 }

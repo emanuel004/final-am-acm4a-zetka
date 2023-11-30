@@ -19,6 +19,9 @@
             android:name=".PokemonListActivity"
             android:exported="false" />
         <activity
+            android:name=".PokemonRadomActivity"
+            android:exported="false" />
+        <activity
             android:name=".PokemonActivity"
             android:exported="false" />
         <activity
