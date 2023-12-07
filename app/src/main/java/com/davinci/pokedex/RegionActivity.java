@@ -17,12 +17,14 @@ import com.davinci.pokedex.controller.GetRandom;
 import com.davinci.pokedex.model.Pokemon;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class RegionActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     RecyclerView recyclerView;
     ArrayList<Region> regions;
@@ -31,6 +33,7 @@ public class RegionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
+        mAuth = FirebaseAuth.getInstance();
 
         Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON", Toast.LENGTH_SHORT).show();
 
@@ -63,6 +66,12 @@ public class RegionActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void salir(ImageButton imageButton){
+        mAuth.signOut();
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
     }
 
 
