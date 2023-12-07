@@ -13,7 +13,12 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     public void checkConnection(){
         ConnectivityManager connectivityManager =
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.boton);
         initialAnimation();
         checkConnection();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void initialAnimation() {
@@ -78,5 +84,19 @@ public class MainActivity extends AppCompatActivity {
         linear.startAnimation(animation);
         linear2.startAnimation(animation1);
         button.startAnimation(animation1);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(MainActivity.this, RegionActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(MainActivity.this, Login.class);
+            startActivity(intent);
+        }
     }
 }

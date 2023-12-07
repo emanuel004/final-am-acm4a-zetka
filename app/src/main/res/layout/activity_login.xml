@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <EditText
+            android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:autofillHints="emailAddress"
@@ -21,6 +22,7 @@
         </EditText>
         <EditText
             android:layout_width="match_parent"
+            android:id="@+id/pass"
             android:layout_height="50dp"
             android:autofillHints="password"
             android:hint="@string/introducir_contrase_a"
@@ -40,6 +42,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login"
+            android:onClick="OnClickLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/login"
