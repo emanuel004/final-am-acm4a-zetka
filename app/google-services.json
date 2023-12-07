@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "769880860923",
+    "project_id": "pokedex-26d51",
+    "storage_bucket": "pokedex-26d51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769880860923:android:1a298834e8819ad5e7e85e",
+        "android_client_info": {
+          "package_name": "com.davinci.pokedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3ltFFf2SzVpY9Njy7p4TocNNAEYpchnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
