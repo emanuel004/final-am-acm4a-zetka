@@ -1,7 +1,5 @@
 package com.davinci.pokedex;
 
-import static com.davinci.pokedex.Constants.URL_BASE;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,24 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
-import com.davinci.pokedex.controller.GetRandom;
-import com.davinci.pokedex.model.Pokemon;
 import com.davinci.pokedex.model.Region;
 import com.davinci.pokedex.model.RegionList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class RegionActivity extends AppCompatActivity {
@@ -35,9 +28,7 @@ public class RegionActivity extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private String name;
-
     RecyclerView recyclerView;
-    ArrayList<Region> regions;
     ArrayList<RegionList> regionArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,42 +56,29 @@ public class RegionActivity extends AppCompatActivity {
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
 
-        ImageButton imageButton = findViewById(R.id.random);
-        clickEvent(imageButton);
-
     }
 
     private void obtenerDatos() {
         db.collection("Users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                //Log.d(TAG, document.getId() + " => " + document.getData());
-                                //document.getData();
-                                name = document.getString("Name");
-                                Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON " + name, Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            //Log.w(TAG, "Error getting documents.", task.getException());
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            //Log.d(TAG, document.getId() + " => " + document.getData());
+                            //document.getData();
+                            name = document.getString("Name");
+                            Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON " + name, Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        //Log.w(TAG, "Error getting documents.", task.getException());
                     }
-                });
+                }
+            });
     }
 
-    private void clickEvent(ImageButton imageButton) {
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(), PokemonRadomActivity.class);
-                startActivity(intent);
-            }
-        });
-
-    }
 
     public void salir(View view){
         mAuth.signOut();
@@ -109,4 +87,8 @@ public class RegionActivity extends AppCompatActivity {
     }
 
 
+    public void onClickRandom(View view) {
+        Intent intent = new Intent(view.getContext(), PokemonRadomActivity.class);
+        startActivity(intent);
+    }
 }

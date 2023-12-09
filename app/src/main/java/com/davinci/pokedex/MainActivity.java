@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected()){
-            //hacer algo
+            mAuth = FirebaseAuth.getInstance();
         }else{
-            //Activity
+            mAuth.signOut();
+            intentLogin();
         }
     }
 
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.boton);
         initialAnimation();
         checkConnection();
-        mAuth = FirebaseAuth.getInstance();
     }
 
     private void initialAnimation() {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linear = findViewById(R.id.linearUp);
 
         TranslateAnimation animation1 = new TranslateAnimation(0,0,0,1500);
-        animation1.setDuration(2000);
+        animation1.setDuration(3000);
         animation1.setInterpolator(new AccelerateDecelerateInterpolator());
 
         LinearLayout linear2 = findViewById(R.id.linearDown);
@@ -92,11 +92,19 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(MainActivity.this, RegionActivity.class);
-            startActivity(intent);
+            intentRegion();
         }else{
-            Intent intent = new Intent(MainActivity.this, Login.class);
-            startActivity(intent);
+            intentLogin();
         }
+    }
+
+    public void intentLogin(){
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+    }
+
+    public void intentRegion(){
+        Intent intent = new Intent(MainActivity.this, RegionActivity.class);
+        startActivity(intent);
     }
 }

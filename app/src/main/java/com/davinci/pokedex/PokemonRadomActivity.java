@@ -22,11 +22,12 @@ import java.util.concurrent.ExecutionException;
 
 public class PokemonRadomActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokemon);
+
+        Intent intent = new Intent();
 
         recyclerView = findViewById(R.id.pokemon1View);
         recyclerView.setHasFixedSize(true);
@@ -43,7 +44,7 @@ public class PokemonRadomActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext());
+        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext(),"random");
         recyclerView.setAdapter(recyclerview_adapter);
     }
 

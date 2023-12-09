@@ -28,17 +28,11 @@ public class Login extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+    }
 
-        Button button = findViewById(R.id.omitir);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(Login.this, PokemonActivity.class);
-                Intent intent = new Intent(Login.this, RegionActivity.class);
-                startActivity(intent);
-            }
-        });
-
+    public void onClickReg(){
+        Intent intent = new Intent(Login.this, RegistrarseActivity.class);
+        startActivity(intent);
     }
 
     public void OnClickLogin(View view) {
@@ -64,5 +58,10 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void onClickOmitir(View view) {
+        Intent intent = new Intent(Login.this, RegionActivity.class);
+        startActivity(intent);
     }
 }
