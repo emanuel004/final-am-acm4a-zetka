@@ -11,4 +11,5 @@
     <string name="introducir_mail">Introducir Mail</string>
     <string name="omitir">OMITIR</string>
     <string name="capturar">CAPTURAR</string>
+    <string name="capturado">CAPTURADO</string>
 </resources>

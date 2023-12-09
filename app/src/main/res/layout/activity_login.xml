@@ -50,33 +50,13 @@
             >
         </com.google.android.material.button.MaterialButton>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/omitir"
+            android:onClick="onClickReg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/omitir"
-            android:onClick="onClickOmitir"
+            android:text="@string/registrarse"
             android:backgroundTint="@color/red"
             >
         </com.google.android.material.button.MaterialButton>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/olvidaste_tu_contrase_a"
-            android:gravity="center"
-            android:textColor="@color/azul"
-            android:layout_marginVertical="5dp"
-            >
-        </TextView>
-        <TextView
-            android:onClick="onClickReg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registrarse"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:padding="10dp"
-            >
-        </TextView>
 
     </LinearLayout>
 

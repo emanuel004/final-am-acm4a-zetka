@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void onClickReg(){
+    public void onClickReg(View view){
         Intent intent = new Intent(Login.this, RegistrarseActivity.class);
         startActivity(intent);
     }
@@ -60,8 +60,4 @@ public class Login extends AppCompatActivity {
                 });
     }
 
-    public void onClickOmitir(View view) {
-        Intent intent = new Intent(Login.this, RegionActivity.class);
-        startActivity(intent);
-    }
 }

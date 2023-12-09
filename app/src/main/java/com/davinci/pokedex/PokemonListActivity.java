@@ -12,6 +12,7 @@ import android.os.Bundle;
 
 import com.davinci.pokedex.adapter.PokemonListAdapter;
 import com.davinci.pokedex.controller.GetPokemon;
+import com.davinci.pokedex.controller.ObtenerDatos;
 import com.davinci.pokedex.model.Pokemon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,7 +34,7 @@ public class PokemonListActivity extends AppCompatActivity {
     int inicio;
     int total;
 
-    Map<String, String> mapaPokemonUser = new HashMap<>();
+    Map<Object, String> mapaPokemonUser = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,19 +70,8 @@ public class PokemonListActivity extends AppCompatActivity {
     }
 
     private void obtenerDatos() {
-        db.collection("user_pokedex")
-                .whereEqualTo("uid", mAuth.getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                mapaPokemonUser.put(document.getString("n_pokedex"),"");
-                            }
-                        }
-                    }
-                });
+        ObtenerDatos obtenerDatos = new ObtenerDatos("user_pokedex");
+        mapaPokemonUser = obtenerDatos.obtenerDatos();
     }
 
 

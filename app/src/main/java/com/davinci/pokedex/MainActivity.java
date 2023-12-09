@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
         }else{
             mAuth.signOut();
-            intentLogin();
+            //intentLogin();
         }
     }
 
@@ -41,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.boton);
-        initialAnimation();
         checkConnection();
+        initialAnimation();
+
     }
 
     private void initialAnimation() {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linear = findViewById(R.id.linearUp);
 
         TranslateAnimation animation1 = new TranslateAnimation(0,0,0,1500);
-        animation1.setDuration(3000);
+        animation1.setDuration(2000);
         animation1.setInterpolator(new AccelerateDecelerateInterpolator());
 
         LinearLayout linear2 = findViewById(R.id.linearDown);
@@ -71,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 linear.setVisibility(View.INVISIBLE);
                 linear2.setVisibility(View.INVISIBLE);
                 button.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
             }
 
             @Override
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser != null){
             intentRegion();
         }else{
@@ -99,11 +99,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void intentLogin(){
+        initialAnimation();
         Intent intent = new Intent(MainActivity.this, Login.class);
         startActivity(intent);
     }
 
     public void intentRegion(){
+        initialAnimation();
         Intent intent = new Intent(MainActivity.this, RegionActivity.class);
         startActivity(intent);
     }

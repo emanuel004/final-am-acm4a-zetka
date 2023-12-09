@@ -1,6 +1,6 @@
 package com.davinci.pokedex;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,22 +11,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
-import com.davinci.pokedex.model.Region;
+import com.davinci.pokedex.controller.ObtenerDatos;
 import com.davinci.pokedex.model.RegionList;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 
 public class RegionActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String name;
     RecyclerView recyclerView;
     ArrayList<RegionList> regionArrayList;
@@ -34,13 +27,8 @@ public class RegionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
         
         obtenerDatos();
-
-        //FirebaseUser user = mAuth.getCurrentUser();
-        //String name = user.getDisplayName();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -59,26 +47,11 @@ public class RegionActivity extends AppCompatActivity {
     }
 
     private void obtenerDatos() {
-        db.collection("Users")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            //Log.d(TAG, document.getId() + " => " + document.getData());
-                            //document.getData();
-                            name = document.getString("Name");
-                            Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON " + name, Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        //Log.w(TAG, "Error getting documents.", task.getException());
-                    }
-                }
-            });
+        ObtenerDatos obtenerDatos = new ObtenerDatos("Users");
+        obtenerDatos.obtenerNameLogin();
+        name = obtenerDatos.getName();
+        Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON " + name, Toast.LENGTH_SHORT).show();
     }
-
-
 
     public void salir(View view){
         mAuth.signOut();

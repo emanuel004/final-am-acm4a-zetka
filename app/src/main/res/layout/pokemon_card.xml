@@ -60,6 +60,13 @@
             android:text="@string/capturar"
             android:visibility="invisible"
             />
+        <TextView
+            android:id="@+id/captured"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/capturado"
+            android:visibility="invisible"
+            android:textSize="16dp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

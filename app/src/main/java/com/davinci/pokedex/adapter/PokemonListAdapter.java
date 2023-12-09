@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.Map;
 
 public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.ViewHolder> {
-    private final Map<String, String> mapaPokemonUser;
+    private final Map<Object, String> mapaPokemonUser;
     private List<Pokemon> pokemonList;
     private Context context;
 
-    public PokemonListAdapter(Map<String, String> mapaPokemonUser, List<Pokemon> pokemonList, Context context) {
+    public PokemonListAdapter(Map<Object, String> mapaPokemonUser, List<Pokemon> pokemonList, Context context) {
         this.mapaPokemonUser = mapaPokemonUser;
         this.pokemonList = pokemonList;
         this.context = context;
@@ -44,17 +44,16 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
         Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
 
-        int idPokemon = pokemonList.get(position).getNo();
-        if (idPokemon == 49){
-            String h = "";
-        }
-        String capturado = mapaPokemonUser.get(String.valueOf(idPokemon));
+        Long idPokemon = (long) pokemonList.get(position).getNo();
+
+        String capturado = mapaPokemonUser.get(idPokemon);
 
         if (capturado == null) {
             float alphaValue = 0.5f; // Puedes ajustar este valor según sea necesario
             holder.cardView.setAlpha(alphaValue);
         }else {
             String t = "";
+            holder.cardView.setAlpha(1.0f);
         }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
