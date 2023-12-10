@@ -1,6 +1,5 @@
 package com.davinci.pokedex;
 
-import static com.davinci.pokedex.Constants.URL_BASE;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,30 +8,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.davinci.pokedex.adapter.RegionAdapter;
-import com.davinci.pokedex.controller.GetRandom;
-import com.davinci.pokedex.model.Pokemon;
-import com.davinci.pokedex.model.Region;
+import com.davinci.pokedex.controller.ObtenerDatos;
 import com.davinci.pokedex.model.RegionList;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class RegionActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String name;
     RecyclerView recyclerView;
-    ArrayList<Region> regions;
     ArrayList<RegionList> regionArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_region);
-
-        Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON", Toast.LENGTH_SHORT).show();
+        
+        obtenerDatos();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -48,22 +44,24 @@ public class RegionActivity extends AppCompatActivity {
         RegionAdapter regionAdapter = new RegionAdapter(regionArrayList,this);
         recyclerView.setAdapter(regionAdapter);
 
-        ImageButton imageButton = findViewById(R.id.random);
-        clickEvent(imageButton);
-
     }
 
-    private void clickEvent(ImageButton imageButton) {
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void obtenerDatos() {
+        ObtenerDatos obtenerDatos = new ObtenerDatos("Users");
+        obtenerDatos.obtenerNameLogin();
+        name = obtenerDatos.getName();
+        Toast.makeText(RegionActivity.this, "BIENVENIDO MAESTRO POKEMON " + name, Toast.LENGTH_SHORT).show();
+    }
 
-                Intent intent = new Intent(v.getContext(), PokemonRadomActivity.class);
-                startActivity(intent);
-            }
-        });
-
+    public void salir(View view){
+        mAuth.signOut();
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
     }
 
 
+    public void onClickRandom(View view) {
+        Intent intent = new Intent(view.getContext(), PokemonRadomActivity.class);
+        startActivity(intent);
+    }
 }

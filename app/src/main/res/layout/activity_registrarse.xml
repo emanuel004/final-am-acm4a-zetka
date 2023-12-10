@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="25dp"
-    tools:context=".Login">
+    tools:context=".RegistrarseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,15 @@
             android:layout_height="50dp"
             android:autofillHints="emailAddress"
             android:hint="@string/introducir_mail"
+            android:inputType="text">
+
+        </EditText>
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/introducir_nombre"
             android:inputType="text">
 
         </EditText>
@@ -42,15 +51,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login"
-            android:onClick="OnClickLogin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/login"
-            android:backgroundTint="@color/red"
-            >
-        </com.google.android.material.button.MaterialButton>
-        <com.google.android.material.button.MaterialButton
-            android:onClick="onClickReg"
+            android:onClick="OnClickLogOn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/registrarse"

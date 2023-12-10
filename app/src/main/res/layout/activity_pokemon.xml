@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PokemonActivity">
 
-    <LinearLayout
-        android:id="@+id/info_pokemon1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="150dp"
-        android:gravity="center">
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokemon1View"
@@ -25,9 +17,5 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

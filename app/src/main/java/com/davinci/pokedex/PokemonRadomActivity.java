@@ -2,7 +2,7 @@ package com.davinci.pokedex;
 
 import static com.davinci.pokedex.Constants.URL_BASE;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,18 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.davinci.pokedex.adapter.Pokemon_adapter;
 import com.davinci.pokedex.controller.GetRandom;
-import com.davinci.pokedex.controller.PokemonGet;
 import com.davinci.pokedex.model.Pokemon;
-import com.davinci.pokedex.model.Random;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class PokemonRadomActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +40,7 @@ public class PokemonRadomActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext());
+        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext(),"random");
         recyclerView.setAdapter(recyclerview_adapter);
     }
 
@@ -52,4 +49,5 @@ public class PokemonRadomActivity extends AppCompatActivity {
         List<Pokemon> respuesta1 = getRandom.execute(URL_BASE + "pokemon/random?limit=10").get();
         return respuesta1;
     }
+
 }

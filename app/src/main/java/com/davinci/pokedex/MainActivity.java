@@ -13,7 +13,12 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     public void checkConnection(){
         ConnectivityManager connectivityManager =
@@ -22,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected()){
-            //hacer algo
+            mAuth = FirebaseAuth.getInstance();
         }else{
-            //Activity
+            mAuth.signOut();
+            //intentLogin();
         }
     }
 
@@ -35,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.boton);
-        initialAnimation();
         checkConnection();
+        initialAnimation();
+
     }
 
     private void initialAnimation() {
@@ -65,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 linear.setVisibility(View.INVISIBLE);
                 linear2.setVisibility(View.INVISIBLE);
                 button.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
             }
 
             @Override
@@ -78,5 +83,30 @@ public class MainActivity extends AppCompatActivity {
         linear.startAnimation(animation);
         linear2.startAnimation(animation1);
         button.startAnimation(animation1);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null){
+            intentRegion();
+        }else{
+            intentLogin();
+        }
+    }
+
+    public void intentLogin(){
+        initialAnimation();
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+    }
+
+    public void intentRegion(){
+        initialAnimation();
+        Intent intent = new Intent(MainActivity.this, RegionActivity.class);
+        startActivity(intent);
     }
 }

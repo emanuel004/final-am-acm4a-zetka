@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,15 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.davinci.pokedex.PokemonActivity;
 import com.davinci.pokedex.R;
+import com.davinci.pokedex.RegionActivity;
 import com.davinci.pokedex.model.Pokemon;
 
 import java.util.List;
+import java.util.Map;
 
 public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.ViewHolder> {
+    private final Map<Object, String> mapaPokemonUser;
     private List<Pokemon> pokemonList;
     private Context context;
 
-    public PokemonListAdapter(List<Pokemon> pokemonList, Context context) {
+    public PokemonListAdapter(Map<Object, String> mapaPokemonUser, List<Pokemon> pokemonList, Context context) {
+        this.mapaPokemonUser = mapaPokemonUser;
         this.pokemonList = pokemonList;
         this.context = context;
     }
@@ -38,22 +43,34 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         //se inserta en la cardview
         //holder.imageView.setImageResource(recyclerview_lists.get(position).getImage());
         Glide.with(context).load(pokemonList.get(position).getSprites().getFront_default()).into(holder.imageView);
+
+        Long idPokemon = (long) pokemonList.get(position).getNo();
+
+        String capturado = mapaPokemonUser.get(idPokemon);
+
+        if (capturado == null) {
+            float alphaValue = 0.5f; // Puedes ajustar este valor según sea necesario
+            holder.cardView.setAlpha(alphaValue);
+        }else {
+            String t = "";
+            holder.cardView.setAlpha(1.0f);
+        }
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int adapterPosition = holder.getAdapterPosition();
-                // Obtener datos específicos de la CardView en esta posición
-                //String datoEspecifico = listaDeDatos.get(position).getDatoEspecifico();
-                //holder.
+                if (capturado == null) {
+                    Toast.makeText(context, "CAPTURALO PARA VER INFO", Toast.LENGTH_SHORT).show();
+                } else {
+                    int adapterPosition = holder.getAdapterPosition();
 
-                // Aquí puedes realizar acciones con el dato específico, por ejemplo, abrir una nueva actividad o fragmento.
-                Intent intent = new Intent(view.getContext(), PokemonActivity.class);
-                intent.putExtra("id_pokemon", pokemonList.get(adapterPosition).no);
-                view.getContext().startActivity(intent);
-
+                    // Aquí puedes realizar acciones con el dato específico, por ejemplo, abrir una nueva actividad o fragmento.
+                    Intent intent = new Intent(view.getContext(), PokemonActivity.class);
+                    intent.putExtra("id_pokemon", pokemonList.get(adapterPosition).no);
+                    view.getContext().startActivity(intent);
+                }
             }
         });
-
     }
     public int getItemCount() {
         return pokemonList.size();

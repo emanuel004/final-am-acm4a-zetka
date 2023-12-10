@@ -8,19 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.davinci.pokedex.adapter.Pokemon_adapter;
-import com.davinci.pokedex.controller.GetPokemon;
 import com.davinci.pokedex.controller.PokemonGet;
 import com.davinci.pokedex.model.Pokemon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -51,7 +45,7 @@ public class PokemonActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext());
+        Pokemon_adapter recyclerview_adapter = new Pokemon_adapter(response,getApplicationContext(), "");
         recyclerView.setAdapter(recyclerview_adapter);
     }
 
